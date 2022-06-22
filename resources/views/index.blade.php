@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="{{ asset('assets/admiko/vendors/datatables/DataTables-1.10.21/css/jquery.dataTables.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/admiko/vendors/datatables/Responsive-2.3.0/css/responsive.dataTables.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/admiko/vendors/datatables/FixedHeader-3.2.4/css/fixedHeader.dataTables.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/admiko/vendors/datatables/FixedColumns-4.1.0/css/fixedColumns.dataTables.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/admiko/vendors/fontawesome/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/admiko/css/bibliography.css') }}">
 
@@ -34,11 +35,11 @@
 </head>
 <body>
     <div class="container py-5">
-        <header class="text-center text-black">
+        <!-- <header class="text-center text-black">
             <h1 class="display-5">
                 <b>{{ env('APP_NAME') }}</b>
             </h1>
-        </header>
+        </header> -->
         <div class="row py-5">
             <div class="col-lg-10 mx-auto">
                 <div class="card rounded shadow border-0">
@@ -51,7 +52,6 @@
                                         <th>Tytuł</th>
                                         <th>Autorzy</th>
                                         <th>Rok wydania</th>
-                                        <th>Liczba stron</th>
                                         <th>Słowa kluczowe</th>
                                         <th>Tytuł tomu / czasopisma</th>
                                         <th>Redaktor tomu</th>
@@ -66,16 +66,15 @@
                                         <th>ISBN</th>
                                         <th>ISSN</th>
                                         <th>DOI</th>
-                                        <th>Plik</th>
                                         <th>Link</th>
                                         <th>Data dostępu</th>
+                                        <th>Plik</th>
                                     </tr>
                                     <tr>
                                         <th>Lp.</th>
                                         <th>Tytuł</th>
                                         <th>Autorzy</th>
                                         <th>Rok wydania</th>
-                                        <th>Liczba stron</th>
                                         <th>Słowa kluczowe</th>
                                         <th>Tytuł tomu / czasopisma</th>
                                         <th>Redaktor tomu</th>
@@ -90,132 +89,103 @@
                                         <th>ISBN</th>
                                         <th>ISSN</th>
                                         <th>DOI</th>
-                                        <th>Plik</th>
                                         <th>Link</th>
                                         <th>Data dostępu</th>
+                                        <th>Plik</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+
+                                @foreach ($bibliographies as $bibliography)
                                     <tr>
-                                        <td>1</td>
-                                        <td>O pieniążkach wykopanych pod Zaniemyślem</td>
-                                        <td>Borys Paszkiewicz, Jan Kowalski, Zofia Nowak</td>
-                                        <td>2012</td>
-                                        <td>6</td>
-                                        <td>numizmatyka, archeologia</td>
-                                        <td>Acta Archaeologica Carpathica</td>
-                                        <td>Paweł Valde-Nowak</td>
-                                        <td>13</td>
-                                        <td>3</td>
-                                        <td>Studia z dziejów górnictwa 13</td>
-                                        <td>Poznań</td>
-                                        <td>Nowa Era</td>
-                                        <td>2016</td>
-                                        <td>201-206</td>
-                                        <td>3</td>
-                                        <td>918-2-56319-989-4</td>
-                                        <td>0001-5237</td>
-                                        <td>10.4463/00065129AAC.21.023.15251</td>
-                                        <td>abc</td>
-                                        <td>https://dspace.uni.lodz.pl/xmlui/bitstream/handle/11089/28198/Stanisław_Liszewski_51_73.pdf</td>
-                                        <td>21.06.2022</td>
+                                        <td>{{ $bibliography->id }}</td>
+                                        <td>{{ $bibliography->title }}</td>
+                                        <td>{{ $bibliography->authors }}</td>
+                                        <td>{{ $bibliography->publishment_year }}</td>
+                                        <td>
+                                            @if ($bibliography->keywords)
+                                                {{ $bibliography->keywords }}
+                                            @endif
+                                        </td>
+                                        <td>{{ $bibliography->issue_title }}</td>
+                                        <td>{{ $bibliography->volume_editor }}</td>
+                                        <td>
+                                            @if ($bibliography->volume)
+                                                {{ $bibliography->volume }}
+                                            @else
+                                                nie podano
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if ($bibliography->notebook)
+                                                {{ $bibliography->notebook }}
+                                            @else
+                                                nie podano
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if ($bibliography->series)
+                                                {{ $bibliography->series }}
+                                            @else
+                                                nie podano
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if ($bibliography->publication_place)
+                                                {{ $bibliography->publication_place }}
+                                            @else
+                                                nie podano
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if ($bibliography->publishing_house)
+                                                {{ $bibliography->publishing_house }}
+                                            @else
+                                                nie podano
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if ($bibliography->publication_year)
+                                                {{ $bibliography->publication_year }}
+                                            @else
+                                                nie podano
+                                            @endif
+                                        </td>
+                                        <td>{{ $bibliography->page_range }}</td>
+                                        <td>
+                                            @if ($bibliography->ilustrations_number)
+                                                {{ $bibliography->ilustrations_number }}
+                                            @else
+                                                nie podano
+                                            @endif
+                                        </td>
+                                        <td>{{ $bibliography->isbn }}</td>
+                                        <td>{{ $bibliography->issn }}</td>
+                                        <td>{{ $bibliography->doi }}</td>
+                                        <td>
+                                            @if ($bibliography->link)
+                                                {{ $bibliography->link }}
+                                            @else
+                                                nie podano
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if ($bibliography->link && $bibliography->access_date)
+                                                {{ $bibliography->access_date }}
+                                            @else
+                                                nie podano
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if ($bibliography->file)
+                                                {{ $bibliography->file }}
+                                            @else
+                                                brak
+                                            @endif
+                                        </td>
                                     </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>O pieniążkach wykopanych pod Zaniemyślem</td>
-                                        <td>Borys Paszkiewicz, Jan Kowalski, Zofia Nowak</td>
-                                        <td>2012</td>
-                                        <td>6</td>
-                                        <td>numizmatyka, archeologia</td>
-                                        <td>Acta Archaeologica Carpathica</td>
-                                        <td>Paweł Valde-Nowak</td>
-                                        <td>13</td>
-                                        <td>3</td>
-                                        <td>Studia z dziejów górnictwa 13</td>
-                                        <td>Poznań</td>
-                                        <td>Nowa Era</td>
-                                        <td>2016</td>
-                                        <td>201-206</td>
-                                        <td>3</td>
-                                        <td>918-2-56319-989-4</td>
-                                        <td>0001-5237</td>
-                                        <td>10.4463/00065129AAC.21.023.15251</td>
-                                        <td>abc</td>
-                                        <td>https://dspace.uni.lodz.pl/xmlui/bitstream/handle/11089/28198/Stanisław_Liszewski_51_73.pdf</td>
-                                        <td>21.06.2022</td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>O pieniążkach wykopanych pod Zaniemyślem</td>
-                                        <td>Borys Paszkiewicz, Jan Kowalski, Zofia Nowak</td>
-                                        <td>2012</td>
-                                        <td>6</td>
-                                        <td>numizmatyka, archeologia</td>
-                                        <td>Acta Archaeologica Carpathica</td>
-                                        <td>Paweł Valde-Nowak</td>
-                                        <td>13</td>
-                                        <td>3</td>
-                                        <td>Studia z dziejów górnictwa 13</td>
-                                        <td>Poznań</td>
-                                        <td>Nowa Era</td>
-                                        <td>2016</td>
-                                        <td>201-206</td>
-                                        <td>3</td>
-                                        <td>918-2-56319-989-4</td>
-                                        <td>0001-5237</td>
-                                        <td>10.4463/00065129AAC.21.023.15251</td>
-                                        <td>abc</td>
-                                        <td>https://dspace.uni.lodz.pl/xmlui/bitstream/handle/11089/28198/Stanisław_Liszewski_51_73.pdf</td>
-                                        <td>21.06.2022</td>
-                                    </tr>
-                                    <tr>
-                                        <td>4</td>
-                                        <td>O pieniążkach wykopanych pod Zaniemyślem</td>
-                                        <td>Borys Paszkiewicz, Jan Kowalski, Zofia Nowak</td>
-                                        <td>2012</td>
-                                        <td>6</td>
-                                        <td>numizmatyka, archeologia</td>
-                                        <td>Acta Archaeologica Carpathica</td>
-                                        <td>Paweł Valde-Nowak</td>
-                                        <td>13</td>
-                                        <td>3</td>
-                                        <td>Studia z dziejów górnictwa 13</td>
-                                        <td>Poznań</td>
-                                        <td>Nowa Era</td>
-                                        <td>2016</td>
-                                        <td>201-206</td>
-                                        <td>3</td>
-                                        <td>918-2-56319-989-4</td>
-                                        <td>0001-5237</td>
-                                        <td>10.4463/00065129AAC.21.023.15251</td>
-                                        <td>abc</td>
-                                        <td>https://dspace.uni.lodz.pl/xmlui/bitstream/handle/11089/28198/Stanisław_Liszewski_51_73.pdf</td>
-                                        <td>21.06.2022</td>
-                                    </tr>
-                                    <tr>
-                                        <td>5</td>
-                                        <td>O pieniążkach wykopanych pod Zaniemyślem</td>
-                                        <td>Borys Paszkiewicz, Jan Kowalski, Zofia Nowak</td>
-                                        <td>2012</td>
-                                        <td>6</td>
-                                        <td>numizmatyka, archeologia</td>
-                                        <td>Acta Archaeologica Carpathica</td>
-                                        <td>Paweł Valde-Nowak</td>
-                                        <td>13</td>
-                                        <td>3</td>
-                                        <td>Studia z dziejów górnictwa 13</td>
-                                        <td>Poznań</td>
-                                        <td>Nowa Era</td>
-                                        <td>2016</td>
-                                        <td>201-206</td>
-                                        <td>3</td>
-                                        <td>918-2-56319-989-4</td>
-                                        <td>0001-5237</td>
-                                        <td>10.4463/00065129AAC.21.023.15251</td>
-                                        <td>abc</td>
-                                        <td>https://dspace.uni.lodz.pl/xmlui/bitstream/handle/11089/28198/Stanisław_Liszewski_51_73.pdf</td>
-                                        <td>21.06.2022</td>
-                                    </tr>
+                                @endforeach
+
                                 </tbody>
                             </table>
                         </div>
@@ -232,6 +202,7 @@
     <script src="{{ asset('assets/admiko/vendors/datatables/DataTables-1.10.21/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/admiko/vendors/datatables/Responsive-2.3.0/js/dataTables.responsive.min.js') }}"></script>
     <script src="{{ asset('assets/admiko/vendors/datatables/FixedHeader-3.2.4/js/dataTables.fixedHeader.min.js') }}"></script>
+    <script src="{{ asset('assets/admiko/vendors/datatables/FixedColumns-4.1.0/js/dataTables.fixedColumns.min.js') }}"></script>
     <script src="{{ asset('assets/admiko/js/bibliography.js') }}"></script>
 
 </body>

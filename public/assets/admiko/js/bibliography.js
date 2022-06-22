@@ -1,14 +1,9 @@
-let shownHeaders = new Array();
-
 $(function() {
 
     $(document).ready(function() {
 
-        let arrayCounter = 0;
-        let shownHeaderCounter = 0;
-
         const bibliographyTable = $('#bibliography').DataTable({
-
+            // autoWidth: false,
             columns: [
                 {
                     data: 0
@@ -65,41 +60,47 @@ $(function() {
                     data: 17
                 },
                 {
-                    data: 18
-                },
-                {
-                    data: 19,
+                    data: 18,
                     render: function (data, type) {
 
-                        if (data != 'brak') {
-                            return '<a href="https://dspace.uni.lodz.pl/xmlui/bitstream/handle/11089/28198/Stanisław_Liszewski_51_73.pdf">Pobierz</a>';
+                        if (data != 'nie podano') {
+                            return '<a href="' + data + '">Kliknij</a>';
                         }
 
                         return data;
                     }
                 },
                 {
-                    data: 20
+                    data: 19
                 },
                 {
-                    data: 21
+                    data: 20,
+                    render: function (data, type) {
+
+                        if (data != 'brak') {
+                            return '<a href="' + data + '">Pobierz</a>';
+                        }
+
+                        return data;
+                    }
                 }
             ],
             columnDefs: [
-                // {
-                //     targets: [3, 4, 5, 6, 7, 8, 9, 11, 12, 14, 16, 17, 18, 20, 21],
-                //     visible: false
-                // },
+                {
+                    targets: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
+                    className: 'dt-head-center dt-body-center'
+                },
+                {
+                    targets: [0],
+                    visible: false
+                },
                 {
                     targets: [19],
                     searchable: false
-                },
-                {
-                    targets: [0, 1, 2, 10, 13, 15, 19],
-                    className: 'dt-head-center dt-body-center'
                 }
             ],
-            fixedHeader : true,
+            fixedColumns: true,
+            fixedHeader: true,
             language: {
                 // aria: {
                 //     sortAscending: ": sortowanie rosnąco",
@@ -133,17 +134,6 @@ $(function() {
             // stateSave: true
         });
 
-        $('#bibliography thead tr:eq(0) th').each(function () {
-
-            const colId = $(this).index();
-
-            if (bibliographyTable.column(colId).visible() === true) {
-                shownHeaders[arrayCounter++] = shownHeaderCounter;
-            }
-
-            shownHeaderCounter++;
-        });
-
         windowResize()
 
         $('#bibliography tbody').on('mouseenter', 'td', function () {
@@ -170,7 +160,7 @@ $(function() {
 
         $('#bibliography thead').on('keyup', '.column-search', function () {
             bibliographyTable
-                .column(shownHeaders[$(this).parent().index()])
+                .column($(this).parent().index()+1)
                 .search(this.value)
                 .draw();
         });
@@ -202,9 +192,12 @@ function windowResize() {
         $('#bibliography thead tr:eq(0) th').each(function () {
             if (shownHeaderCounter > 0) {
                 $(this).html('<input type="text" class="column-search" />');
+                $(this).removeClass('dtr-hidden');
+                $(this).css({"width": "", "display": ""});
                 shownHeaderCounter--;
             } else {
-                $(this).html('<input type="hidden" />');
+                $(this).addClass('dtr-hidden');
+                $(this).css({"width": "0px", "display": "none"});
             }
         });
 
@@ -219,5 +212,5 @@ function windowResize() {
             }
         });
 
-    }, 100);
+    }, 300);
 }

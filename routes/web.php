@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Bibliography\Bibliographies;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +15,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('index');
+    $bibliographies = Bibliographies::where('id', '>', 0)->get();
+    return view('index')->with('bibliographies', $bibliographies);
 });
