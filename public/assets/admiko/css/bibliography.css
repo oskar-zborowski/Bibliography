@@ -1,0 +1,34 @@
+body {
+    min-height: 100vh;
+    background-image: linear-gradient(147deg, #c0c0c0 0%, #000000 100%);
+}
+
+#bibliography {
+    padding-top: 1em;
+    margin-bottom: 0.5em;
+}
+
+select[name="bibliography_length"] {
+    height: 30px;
+}
+
+thead input {
+    width: 100%;
+    padding: 1px;
+    box-sizing: border-box;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+td.highlight {
+    background-color: rgb(246, 246, 246);
+}
+
+td.centerHighlight {
+    background-color: rgb(228, 228, 228);
+}
+
+tbody tr td {
+    padding-left: 30px;
+    padding-right: 30px;
+}
