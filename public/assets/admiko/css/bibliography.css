@@ -1,0 +1,100 @@
+h1.title {
+    text-align: center;
+    font-weight: 900;
+    margin: 2.5rem 0;
+}
+
+.is-main h1.title {
+    font-size: 3rem;
+}
+
+.th-wrap {
+    display: flex;
+    justify-content: center;
+}
+
+@media only screen and (min-width: 769px) {
+
+    .td-center {
+        text-align: center;
+    }
+
+    .overflow-ellipsis:before {
+        content: "&nbsp;";
+        visibility: hidden;
+    }
+
+    .overflow-ellipsis span {
+        position: absolute;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        left: 0.75em;
+        right: 0.75em;
+        text-align: center;
+    }
+
+    .overflow-ellipsis:hover:before {
+        content: "";
+    }
+
+    .expanded-details {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+
+    .td-center {
+        text-align: right;
+    }
+
+    .overflow-ellipsis span {
+        position: absolute;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 160px;
+        right: 0.75em;
+        text-align: right;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .detail {
+        display: none !important;
+    }
+
+    td:before {
+        max-width: 100px;
+    }
+}
+
+.overflow-ellipsis {
+    min-width: auto;
+    position: relative;
+    text-align: justify;
+    cursor: pointer;
+}
+
+.overflow-ellipsis:hover span {
+    position: initial;
+    width: initial;
+    white-space: initial;
+    overflow: initial;
+    text-overflow: initial;
+    display: block;
+    top: initial;
+    transform: initial;
+    margin: 0;
+    padding: 0;
+}
+
+ul > li {
+    border-bottom: 1px solid rgb(221,221,221);
+    padding: 6px;
+}
+
+ul > li:last-child {
+    border-bottom: none;
+}
