@@ -8,9 +8,9 @@
  **/
 return [
     [
-        'name' => 'Bibliografie',
-        'route_id' => 'bibliographies',
-        'model' => 'Bibliographies',
+        'name' => 'Bibliografia',
+        'route_id' => 'bibliography',
+        'model' => 'Bibliography',
         'fields' => [
             ["field"=>"id","show"=>1],
 			["field"=>"authors","show"=>1],

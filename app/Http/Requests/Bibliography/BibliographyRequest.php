@@ -9,11 +9,11 @@ namespace App\Http\Requests\Bibliography;
 use Illuminate\Foundation\Http\FormRequest;
 use Response;
 
-class BibliographiesRequest extends FormRequest
+class BibliographyRequest extends FormRequest
 {
     public function rules()
     {
-        $id = $this->route("bibliographies") ?? null;
+        $id = $this->route("bibliography") ?? null;
 		return [
             "authors"=>[
 				"string",
@@ -25,11 +25,11 @@ class BibliographiesRequest extends FormRequest
 			],
 			"issue_title"=>[
 				"string",
-				"required"
+				"nullable"
 			],
 			"volume_editor"=>[
 				"string",
-				"required"
+				"nullable"
 			],
 			"volume"=>[
 				"integer",
@@ -73,16 +73,16 @@ class BibliographiesRequest extends FormRequest
 			],
 			"isbn"=>[
 				"string",
-				"required"
+				"nullable"
 			],
 			"issn"=>[
 				"string",
-				"required"
+				"nullable"
 			],
 			"doi"=>[
 				"string",
-				"unique:bibliographies,doi,".$id.",id,deleted_at,NULL",
-				"required"
+				"unique:bibliography,doi,".$id.",id,deleted_at,NULL",
+				"nullable"
 			],
 			"file"=>[
 				"file",
@@ -93,10 +93,6 @@ class BibliographiesRequest extends FormRequest
 			],
 			"link"=>[
 				"string",
-				"nullable"
-			],
-			"access_date"=>[
-				'date_format:"'.config('admiko_config.table_date_format').'"',
 				"nullable"
 			]
         ];
@@ -122,8 +118,7 @@ class BibliographiesRequest extends FormRequest
 			"issn"=>"ISSN",
 			"doi"=>"DOI",
 			"file"=>"Plik",
-			"link"=>"Link",
-			"access_date"=>"Data dostępu"
+			"link"=>"Link"
         ];
     }
     public function messages()

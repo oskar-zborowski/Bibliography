@@ -7,16 +7,16 @@
  */
 namespace App\Models\Bibliography;
 use Illuminate\Database\Eloquent\Model;
-use Carbon\Carbon;
 use App\Http\Controllers\Traits\Bibliography\AdmikoFileUploadTrait;
 use App\Http\Controllers\Traits\Bibliography\AdmikoAuditableTrait;
+use App\Http\Controllers\Traits\Bibliography\AdmikoMultiTenantModeTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Bibliographies extends Model
+class Bibliography extends Model
 {
-    use AdmikoFileUploadTrait,AdmikoAuditableTrait,SoftDeletes;
+    use AdmikoFileUploadTrait,AdmikoAuditableTrait,AdmikoMultiTenantModeTrait,SoftDeletes;
 
-    public $table = 'bibliographies';
+    public $table = 'bibliography';
     
     
 	static $admiko_file_info = [
@@ -51,26 +51,17 @@ class Bibliographies extends Model
 		"file",
 		"file_admiko_delete",
 		"link",
-		"access_date",
     ];
     public function setFileAttribute()
     {
         if (request()->hasFile('file')) {
-            $this->attributes['file'] = $this->fileUpload(request()->file("file"), Bibliographies::$admiko_file_info["file"], $this->getOriginal('file'));
+            $this->attributes['file'] = $this->fileUpload(request()->file("file"), Bibliography::$admiko_file_info["file"], $this->getOriginal('file'));
         }
     }
     public function setFileAdmikoDeleteAttribute($value)
     {
         if (!request()->hasFile('file') && request()->file_admiko_delete == 1) {
-            $this->attributes['file'] = $this->fileUpload('', Bibliographies::$admiko_file_info["file"], $this->getOriginal('file'), $value);
+            $this->attributes['file'] = $this->fileUpload('', Bibliography::$admiko_file_info["file"], $this->getOriginal('file'), $value);
         }
-    }
-	public function getAccessDateAttribute($value)
-    {
-        return $value ? Carbon::parse($value)->format(config('admiko_config.table_date_format')) : null;
-    }
-    public function setAccessDateAttribute($value)
-    {
-        $this->attributes['access_date'] = $value ? Carbon::createFromFormat(config('admiko_config.table_date_format'), $value)->format('Y-m-d H:i:s') : null;
     }
 }

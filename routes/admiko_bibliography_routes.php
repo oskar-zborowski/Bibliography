@@ -4,6 +4,6 @@
 namespace App\Http\Controllers\Bibliography;
 use Illuminate\Support\Facades\Route;
 
-/**Bibliographies**/
-Route::delete("bibliographies/destroy", [BibliographiesController::class,"destroy"])->name("bibliographies.delete");
-Route::resource("bibliographies", BibliographiesController::class)->parameters(["bibliographies" => "bibliographies"]);
+/**Bibliography**/
+Route::delete("bibliography/destroy", [BibliographyController::class,"destroy"])->name("bibliography.delete");
+Route::resource("bibliography", BibliographyController::class)->parameters(["bibliography" => "bibliography"]);

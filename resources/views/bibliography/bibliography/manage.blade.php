@@ -1,6 +1,6 @@
 @extends("bibliography.layouts.default")
 @section('breadcrumbs')
-    <li class="breadcrumb-item active"><a href="{{ route("bibliography.bibliographies.index") }}">Bibliografie</a></li>
+    <li class="breadcrumb-item active"><a href="{{ route("bibliography.bibliography.index") }}">Bibliografia</a></li>
     @if(isset($data))
 		<li class="breadcrumb-item active" aria-current="page">{{$data->title}}</li>
         <li class="breadcrumb-item active" aria-current="page">{{trans('admiko.page_breadcrumbs_edit')}}</li>
@@ -9,15 +9,15 @@
     @endIf
 @endsection
 @section('pageTitle')
-<h1>Bibliografie</h1>
+<h1>Bibliografia</h1>
 @endsection
 @section('pageInfo')
 @endsection
 @section('backBtn')
-<a href="{{ route("bibliography.bibliographies.index") }}"><i class="fas fa-angle-left"></i> {{trans('admiko.page_back_btn')}}</a>
+<a href="{{ route("bibliography.bibliography.index") }}"><i class="fas fa-angle-left"></i> {{trans('admiko.page_back_btn')}}</a>
 @endsection
 @section('content')
-<div class="card formPage bibliographies_manage admikoForm">
+<div class="card formPage bibliography_manage admikoForm">
     <legend class="action">{{ isset($data) ? trans('admiko.update') : trans('admiko.add_new') }}</legend>
     <form method="POST" action="{{ $admiko_data['formAction'] }}" enctype="multipart/form-data" class="needs-validation" novalidate>
         @if(isset($data)) @method('PUT') @endIf
@@ -47,27 +47,27 @@
                         <div class="col-md-10">
                             <input type="text" class="form-control" id="title" name="title" required="true" placeholder="Tytuł"  value="{{{ old('title', isset($data)?$data->title : '') }}}">
                             <div class="invalid-feedback @if ($errors->has('title')) d-block @endif">{{trans('admiko.required_text')}}</div>
-                            <small id="title_help" class="text-muted"></small>
+                            <small id="title_help" class="text-muted">np. Silesiorum moneta, czyli mennictwo śląskie w późnym średniowieczu (1419-1526) z katalogiem monet śląskich, kłodzkich i łużyckich z lat 1327-1526</small>
                         </div>
                     </div>
                 </div>
                 <div class=" col-12">
                     <div class="form-group row">
-                        <label for="issue_title" class="col-md-2 col-form-label">Tytuł tomu / czasopisma:*</label>
+                        <label for="issue_title" class="col-md-2 col-form-label">Tytuł tomu / czasopisma:</label>
                         <div class="col-md-10">
-                            <input type="text" class="form-control" id="issue_title" name="issue_title" required="true" placeholder="Tytuł tomu / czasopisma"  value="{{{ old('issue_title', isset($data)?$data->issue_title : '') }}}">
+                            <input type="text" class="form-control" id="issue_title" name="issue_title"  placeholder="Tytuł tomu / czasopisma"  value="{{{ old('issue_title', isset($data)?$data->issue_title : '') }}}">
                             <div class="invalid-feedback @if ($errors->has('issue_title')) d-block @endif">{{trans('admiko.required_text')}}</div>
-                            <small id="issue_title_help" class="text-muted"></small>
+                            <small id="issue_title_help" class="text-muted">np. Acta Geologica Polonica</small>
                         </div>
                     </div>
                 </div>
                 <div class=" col-12">
                     <div class="form-group row">
-                        <label for="volume_editor" class="col-md-2 col-form-label">Redaktor tomu:*</label>
+                        <label for="volume_editor" class="col-md-2 col-form-label">Redaktor tomu:</label>
                         <div class="col-md-10">
-                            <input type="text" class="form-control" id="volume_editor" name="volume_editor" required="true" placeholder="Redaktor tomu"  value="{{{ old('volume_editor', isset($data)?$data->volume_editor : '') }}}">
+                            <input type="text" class="form-control" id="volume_editor" name="volume_editor"  placeholder="Redaktor tomu"  value="{{{ old('volume_editor', isset($data)?$data->volume_editor : '') }}}">
                             <div class="invalid-feedback @if ($errors->has('volume_editor')) d-block @endif">{{trans('admiko.required_text')}}</div>
-                            <small id="volume_editor_help" class="text-muted"></small>
+                            <small id="volume_editor_help" class="text-muted">np. Piotr Kowalski</small>
                         </div>
                     </div>
                 </div>
@@ -111,7 +111,7 @@
                         <div class="col-md-10">
                             <input type="text" class="form-control" id="publication_place" name="publication_place"  placeholder="Miejsce wydania"  value="{{{ old('publication_place', isset($data)?$data->publication_place : '') }}}">
                             <div class="invalid-feedback @if ($errors->has('publication_place')) d-block @endif">{{trans('admiko.required_text')}}</div>
-                            <small id="publication_place_help" class="text-muted"></small>
+                            <small id="publication_place_help" class="text-muted">np. Warszawa</small>
                         </div>
                     </div>
                 </div>
@@ -121,7 +121,7 @@
                         <div class="col-md-10">
                             <input type="text" class="form-control" id="publishing_house" name="publishing_house"  placeholder="Wydawnictwo"  value="{{{ old('publishing_house', isset($data)?$data->publishing_house : '') }}}">
                             <div class="invalid-feedback @if ($errors->has('publishing_house')) d-block @endif">{{trans('admiko.required_text')}}</div>
-                            <small id="publishing_house_help" class="text-muted"></small>
+                            <small id="publishing_house_help" class="text-muted">np. Wydawnictwo Uniwersytetu Jagiellońskiego</small>
                         </div>
                     </div>
                 </div>
@@ -188,9 +188,9 @@
                 </div>
                 <div class=" col-12">
                     <div class="form-group row">
-                        <label for="isbn" class="col-md-2 col-form-label">ISBN:*</label>
+                        <label for="isbn" class="col-md-2 col-form-label">ISBN:</label>
                         <div class="col-md-10">
-                            <input type="text" class="form-control" id="isbn" name="isbn" required="true" placeholder="ISBN"  value="{{{ old('isbn', isset($data)?$data->isbn : '') }}}">
+                            <input type="text" class="form-control" id="isbn" name="isbn"  placeholder="ISBN"  value="{{{ old('isbn', isset($data)?$data->isbn : '') }}}">
                             <div class="invalid-feedback @if ($errors->has('isbn')) d-block @endif">{{trans('admiko.required_text')}}</div>
                             <small id="isbn_help" class="text-muted">np. 918-2-56319-989-4</small>
                         </div>
@@ -198,9 +198,9 @@
                 </div>
                 <div class=" col-12">
                     <div class="form-group row">
-                        <label for="issn" class="col-md-2 col-form-label">ISSN:*</label>
+                        <label for="issn" class="col-md-2 col-form-label">ISSN:</label>
                         <div class="col-md-10">
-                            <input type="text" class="form-control" id="issn" name="issn" required="true" placeholder="ISSN"  value="{{{ old('issn', isset($data)?$data->issn : '') }}}">
+                            <input type="text" class="form-control" id="issn" name="issn"  placeholder="ISSN"  value="{{{ old('issn', isset($data)?$data->issn : '') }}}">
                             <div class="invalid-feedback @if ($errors->has('issn')) d-block @endif">{{trans('admiko.required_text')}}</div>
                             <small id="issn_help" class="text-muted">np. 0001-5237</small>
                         </div>
@@ -208,9 +208,9 @@
                 </div>
                 <div class=" col-12">
                     <div class="form-group row">
-                        <label for="doi" class="col-md-2 col-form-label">DOI:*</label>
+                        <label for="doi" class="col-md-2 col-form-label">DOI:</label>
                         <div class="col-md-10">
-                            <input type="text" class="form-control" id="doi" name="doi" required="true" placeholder="DOI"  value="{{{ old('doi', isset($data)?$data->doi : '') }}}">
+                            <input type="text" class="form-control" id="doi" name="doi"  placeholder="DOI"  value="{{{ old('doi', isset($data)?$data->doi : '') }}}">
                             <div class="invalid-feedback @if ($errors->has('doi')) d-block @endif">{{trans('admiko.required_text')}}</div>
                             <small id="doi_help" class="text-muted">np. 10.4463/00065129AAC.21.023.15251</small>
                         </div>
@@ -251,25 +251,6 @@
                         </div>
                     </div>
                 </div>
-                <div class=" col-12">
-                    <div class="form-group row">
-                        <label for="access_date" class="col-md-2 col-form-label">Data dostępu:</label>
-                        <div class="col-md-10">
-                            <div class="input-group" id="datePicker_access_date" data-target-input="nearest">
-                                <input type="text" autocomplete="off" style="max-width: 170px;border-right: unset;"
-                                       data-date_time_format="{{config('admiko_config.form_date_format')}}"
-                                       class="form-control datetimepicker-input datePicker"
-                                       data-target="#datePicker_access_date"  id="access_date" data-toggle="datetimepicker"
-                                       placeholder="Data dostępu" name="access_date" value="{{{ old('access_date', isset($data)?$data->access_date : '') }}}">
-                                <div class="input-group-append input-group-text" data-target="#datePicker_access_date" data-toggle="datetimepicker">
-                                    <i class="fas fa-calendar-alt fa-fw"></i>
-                                </div>
-                            </div>
-                            <div class="invalid-feedback @if ($errors->has('access_date')) d-block @endif">{{trans('admiko.required_text')}}</div>
-                            <small id="access_date_help" class="text-muted"></small>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
         <div class="card-footer form-actions" id="form-group-buttons">
@@ -277,7 +258,7 @@
                 <div class="col-2"></div>
                 <div class="col-sm-10">
                     <button type="submit" class="btn btn-primary float-start me-1 mb-1 mb-sm-0 save-button">{{trans('admiko.table_save')}}</button>
-                    <a href="{{ route("bibliography.bibliographies.index") }}" class="btn btn-secondary float-end" role="button">{{trans('admiko.table_cancel')}}</a>
+                    <a href="{{ route("bibliography.bibliography.index") }}" class="btn btn-secondary float-end" role="button">{{trans('admiko.table_cancel')}}</a>
                 </div>
             </div>
         </div>
