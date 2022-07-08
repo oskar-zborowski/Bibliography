@@ -1,11 +1,26 @@
-h1.title {
-    text-align: center;
-    font-weight: 900;
-    margin: 2.5rem 0;
+.parallax {
+    background-attachment: fixed;
+    background-image: url('../images/background.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    -webkit-filter: grayscale(100%);
+       -moz-filter: grayscale(100%);
+         -o-filter: grayscale(100%);
+        -ms-filter: grayscale(100%);
+            filter: grayscale(100%); 
 }
 
-.is-main h1.title {
-    font-size: 3rem;
+h1.title {
+    color: rgb(30, 30, 30) !important;
+    font-size: 2.4rem;
+    font-weight: 900;
+    text-align: center;
+}
+
+.capitalic {
+    font-size: 3.2rem !important;
+    font-weight: 700 !important;
 }
 
 .th-wrap {
@@ -13,7 +28,56 @@ h1.title {
     justify-content: center;
 }
 
+.overflow-ellipsis {
+    position: relative;
+    cursor: pointer;
+    min-width: auto;
+    text-align: justify;
+}
+
+.overflow-ellipsis:hover span {
+    display: block;
+    margin: 0;
+    overflow: initial;
+    padding: 0;
+    position: initial;
+    text-overflow: initial;
+    top: initial;
+    transform: initial;
+    white-space: initial;
+    width: initial;
+}
+
+.elipsis-string-break {
+    word-break: break-all;
+}
+
 @media only screen and (min-width: 769px) {
+
+    h1.title {
+        margin: 5rem 0;
+    }
+
+    .length-menu {
+        float: left;
+        margin-bottom: 50px !important;
+    }
+
+    .before-select {
+        margin-right: 10px;
+    }
+
+    .after-select {
+        margin-left: 10px;
+    }
+
+    .search {
+        float: right;
+    }
+
+    .base-column {
+        vertical-align: middle !important;
+    }
 
     .td-center {
         text-align: center;
@@ -26,12 +90,12 @@ h1.title {
 
     .overflow-ellipsis span {
         position: absolute;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
         left: 0.75em;
         right: 0.75em;
+        overflow: hidden;
         text-align: center;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
 
     .overflow-ellipsis:hover:before {
@@ -41,24 +105,47 @@ h1.title {
     .expanded-details {
         display: none;
     }
+
+    .details {
+        font-weight: bold;
+        margin-right: 15px;
+    }
 }
 
 @media only screen and (max-width: 768px) {
 
-    .td-center {
-        text-align: right;
+    .length-menu {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 30px !important;
+    }
+
+    .before-select {
+        margin-right: 10px;
+        margin-top: 6px;
+    }
+
+    .after-select {
+        margin-left: 10px;
+        margin-top: 6px;
+    }
+
+    .search {
+        display: flex !important;
+        justify-content: center !important;
+        margin-bottom: 48px !important;
     }
 
     .overflow-ellipsis span {
         position: absolute;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        max-width: 160px;
         right: 0.75em;
+        max-width: 160px;
+        overflow: hidden;
         text-align: right;
+        text-overflow: ellipsis;
         top: 50%;
         transform: translateY(-50%);
+        white-space: nowrap;
     }
 
     .detail {
@@ -68,26 +155,10 @@ h1.title {
     td:before {
         max-width: 100px;
     }
-}
 
-.overflow-ellipsis {
-    min-width: auto;
-    position: relative;
-    text-align: justify;
-    cursor: pointer;
-}
-
-.overflow-ellipsis:hover span {
-    position: initial;
-    width: initial;
-    white-space: initial;
-    overflow: initial;
-    text-overflow: initial;
-    display: block;
-    top: initial;
-    transform: initial;
-    margin: 0;
-    padding: 0;
+    .paginator {
+        margin-bottom: 20px;
+    }
 }
 
 ul > li {
@@ -97,4 +168,9 @@ ul > li {
 
 ul > li:last-child {
     border-bottom: none;
+}
+
+.paginator {
+    margin-left: auto;
+    margin-right: auto;
 }
