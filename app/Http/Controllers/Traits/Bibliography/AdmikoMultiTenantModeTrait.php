@@ -12,6 +12,7 @@ namespace App\Http\Controllers\Traits\Bibliography;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Route;
 
 trait AdmikoMultiTenantModeTrait
 {
@@ -33,10 +34,12 @@ trait AdmikoMultiTenantModeTrait
             }
         });
 
-        if(auth()->user()->role_id != 1){
-            static::addGlobalScope('created_by', function (Builder $builder) {
-                $builder->whereIn('created_by', auth()->user()->multi_tenancy_access->pluck('id'))->orWhereNull('created_by');
-            });
+        if (Route::currentRouteName() != 'index-getBibliography') {
+            if(auth()->user()->role_id != 1){
+                static::addGlobalScope('created_by', function (Builder $builder) {
+                    $builder->whereIn('created_by', auth()->user()->multi_tenancy_access->pluck('id'))->orWhereNull('created_by');
+                });
+            }
         }
     }
 

@@ -52,6 +52,10 @@ h1.title {
     word-break: break-all;
 }
 
+.selectbox-label {
+    cursor: pointer;
+}
+
 @media only screen and (min-width: 769px) {
 
     h1.title {
@@ -76,11 +80,12 @@ h1.title {
     }
 
     .base-column {
+        cursor: pointer;
         vertical-align: middle !important;
     }
 
     .td-center {
-        text-align: center;
+        text-align: center !important;
     }
 
     .overflow-ellipsis:before {
@@ -159,6 +164,10 @@ h1.title {
     .paginator {
         margin-bottom: 20px;
     }
+}
+
+.hide-details {
+    display: none !important;
 }
 
 ul > li {

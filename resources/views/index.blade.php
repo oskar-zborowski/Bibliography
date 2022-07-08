@@ -52,23 +52,23 @@
 
             <div class="field is-horizontal length-menu">
                 <div class="field-label is-normal before-select">
-                    <label class="label">Pokaż</label>
+                    <label for="length-menu-selectbox" class="label selectbox-label">Pokaż</label>
                 </div>
                 <div class="field-body">
                     <div class="field is-narrow">
                         <div class="control">
                             <div class="select is-fullwidth">
-                                <select>
+                                <select id="length-menu-selectbox" onchange="changeLengthMenu()">
+                                    <option>10</option>
                                     <option>25</option>
                                     <option>50</option>
-                                    <option>100</option>
                                 </select>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="field-label is-normal after-select">
-                    <label class="label">pozycji</label>
+                    <label for="length-menu-selectbox" class="label selectbox-label">pozycji</label>
                 </div>
             </div>
 
@@ -83,7 +83,7 @@
 
             <div style="clear: both;"></div>
 
-            <div class="b-table has-pagination"> <!-- is-loading -->
+            <div class="b-table has-pagination is-loading">
 
                 <div class="table-wrapper has-mobile-cards">
 
@@ -94,7 +94,7 @@
                                 <th class="is-chevron-cell"></th>
                                 <th class="is-current-sort is-sortable" style="width: 70px;">
                                     <div class="th-wrap">
-                                        Lp.<span class="icon is-small"><i class="mdi mdi-arrow-down"></i></span>
+                                        Nr<span class="icon is-small"><i class="mdi mdi-arrow-down"></i></span>
                                     </div>
                                 </th>
                                 <th class="is-sortable" style="width: 25%;">
@@ -115,85 +115,7 @@
                             </tr>
                         </thead>
 
-                        <tbody>
-
-                            <tr>
-                                <td class="is-chevron-cell">
-                                    <a role="button">
-                                        <span class="icon is-expanded"><i class="mdi mdi-chevron-right mdi-24px"></i></span>
-                                    </a>
-                                </td>
-                                <td data-label="Lp." class="base-column"><div>1</div></td>
-                                <td data-label="Autorzy" class="overflow-ellipsis base-column"><span>Borys Paszkiewicz, Zofia Nowak</span></td>
-                                <td data-label="Tytuł" class="overflow-ellipsis base-column"><span>Silesiorum moneta, czyli mennictwo śląskie w późnym średniowieczu (1419-1526) z katalogiem monet śląskich, kłodzkich i łużyckich z lat 1327-1526</span></td>
-                                <td data-label="Rok wydania" class="base-column"><div class="td-center">2012</div></td>
-                                <td data-label="Tytuł tomu / czasopisma" class="overflow-ellipsis expanded-details"><span>Acta Geologica Polonica</span></td>
-                                <td data-label="Redaktor tomu" class="overflow-ellipsis expanded-details"><span>Piotr Kowalski</span></td>
-                                <td data-label="Tom" class="expanded-details"><span>13</span></td>
-                                <td data-label="Zeszyt" class="expanded-details"><span>3</span></td>
-                                <td data-label="Tytuł i numer serii" class="overflow-ellipsis expanded-details"><span>Studia z dziejów górnictwa 13</span></td>
-                                <td data-label="Miejsce wydania" class="overflow-ellipsis expanded-details"><span>Warszawa</span></td>
-                                <td data-label="Wydawnictwo" class="overflow-ellipsis expanded-details"><span>Wydawnictwo Uniwersytetu Jagiellońskiego</span></td>
-                                <td data-label="Rok publikacji" class="overflow-ellipsis expanded-details"><span>2016</span></td>
-                                <td data-label="Przedział stron" class="overflow-ellipsis expanded-details"><span>201-206</span></td>
-                                <td data-label="Liczba ilustracji" class="overflow-ellipsis expanded-details"><span>3</span></td>
-                                <td data-label="Słowa kluczowe" class="overflow-ellipsis expanded-details"><span>numizmatyka, archeologia</span></td>
-                                <td data-label="ISBN" class="overflow-ellipsis expanded-details"><span class="elipsis-string-break">918-2-56319-989-4</span></td>
-                                <td data-label="ISSN" class="overflow-ellipsis expanded-details"><span class="elipsis-string-break">0001-5237</span></td>
-                                <td data-label="DOI" class="overflow-ellipsis expanded-details"><span class="elipsis-string-break">10.4463/00065129AAC.21.023.15252</span></td>
-                                <td data-label="Link" class="expanded-details"><a href="#">Wyświetl</a></td>
-                                <td data-label="Plik" class="expanded-details"><a href="#">Pobierz</a></td>
-                            </tr>
-
-                            <tr class="detail">
-                                <td colspan="5">
-                                    <div class="detail-container">
-                                        <ul>
-                                            <li><span class="details">Tytuł tomu / czasopisma</span><span>Acta Geologica Polonica</span></li>
-                                            <li><span class="details">Redaktor tomu</span><span>Piotr Kowalski</span></li>
-                                            <li><span class="details">Tom</span><span>13</span></li>
-                                            <li><span class="details">Zeszyt</span><span>3</span></li>
-                                            <li><span class="details">Tytuł i numer serii</span><span>Studia z dziejów górnictwa 13</span></li>
-                                            <li><span class="details">Miejsce wydania</span><span>Warszawa</span></li>
-                                            <li><span class="details">Wydawnictwo</span><span>Wydawnictwo Uniwersytetu Jagiellońskiego</span></li>
-                                            <li><span class="details">Rok publikacji</span><span>2016</span></li>
-                                            <li><span class="details">Przedział stron</span><span>201-206</span></li>
-                                            <li><span class="details">Liczba ilustracji</span><span>3</span></li>
-                                            <li><span class="details">Słowa kluczowe</span><span>numizmatyka, archeologia</span></li>
-                                            <li><span class="details">ISBN</span><span>918-2-56319-989-4</span></li>
-                                            <li><span class="details">ISSN</span><span>0001-5237</span></li>
-                                            <li><span class="details">DOI</span><span>10.4463/00065129AAC.21.023.15252</span></li>
-                                            <li><span class="details">Link</span><a href="#">Wyświetl</a></li>
-                                            <li><span class="details">Plik</span><a href="#">Pobierz</a></li>
-                                        </ul>
-                                    </div>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td class="is-chevron-cell">
-                                    <a role="button">
-                                        <span class="icon"><i class="mdi mdi-chevron-right mdi-24px"></i></span>
-                                    </a>
-                                </td>
-                                <td data-label="Lp." class="base-column"><div>1</div></td>
-                                <td data-label="Autorzy" class="overflow-ellipsis base-column"><span>Borys Paszkiewicz, Zofia Nowak</span></td>
-                                <td data-label="Tytuł" class="overflow-ellipsis base-column"><span>Silesiorum moneta, czyli mennictwo śląskie w późnym średniowieczu (1419-1526) z katalogiem monet śląskich, kłodzkich i łużyckich z lat 1327-1526</span></td>
-                                <td data-label="Rok wydania" class="base-column"><div class="td-center">2012</div></td>
-                            </tr>
-
-                            <!-- <tr class="is-empty">
-                                <td colspan="5">
-                                    <section class="section">
-                                        <div class="content has-text-grey has-text-centered">
-                                            <p><span class="icon is-large"><i class="mdi mdi-emoticon-sad mdi-48px"></i></span></p>
-                                            <p>Brak wyników wyszukiwania ...</p>
-                                        </div>
-                                    </section>
-                                </td>
-                            </tr> -->
-
-                        </tbody>
+                        <tbody></tbody>
 
                     </table>
 
