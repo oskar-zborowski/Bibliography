@@ -46,7 +46,7 @@
         </div>
     </section>
 
-    <section class="section">
+    <section class="section" style="margin-top: 6px;">
 
         <div class="container">
 
@@ -92,22 +92,22 @@
                         <thead>
                             <tr>
                                 <th class="is-chevron-cell"></th>
-                                <th class="is-current-sort is-sortable" style="width: 70px;">
+                                <th id="sort-id" class="is-current-sort is-sortable" style="width: 70px;" onclick="sort('id')">
                                     <div class="th-wrap">
                                         Nr<span class="icon is-small"><i class="mdi mdi-arrow-down"></i></span>
                                     </div>
                                 </th>
-                                <th class="is-sortable" style="width: 25%;">
+                                <th id="sort-authors" class="is-sortable" style="width: 25%;" onclick="sort('authors')">
                                     <div class="th-wrap" style="min-width: 140px;">
-                                        Autorzy<!-- <span class="icon is-small"><i class="mdi mdi-arrow-up"></i></span> -->
+                                        Autorzy
                                     </div>
                                 </th>
-                                <th class="is-sortable" style="width: 75%;">
+                                <th id="sort-title" class="is-sortable" style="width: 75%;" onclick="sort('title')">
                                     <div class="th-wrap">
                                         Tytuł
                                     </div>
                                 </th>
-                                <th class="is-sortable">
+                                <th id="sort-publishment_year" class="is-sortable" onclick="sort('publishment_year')">
                                     <div class="th-wrap" style="white-space: nowrap;">
                                         Rok wydania
                                     </div>
@@ -131,8 +131,8 @@
                         <div class="level-right paginator">
                             <div class="level-item">
                                 <div class="buttons has-addons">
-                                    <button type="button" class="button">Poprzednia</button>
-                                    <button type="button" class="button">Następna</button>
+                                    <button type="button" class="button" onclick="paginate('previous')">Poprzednia</button>
+                                    <button type="button" class="button" onclick="paginate('next')">Następna</button>
                                 </div>
                             </div>
                         </div>
@@ -154,16 +154,6 @@
 
     <script src="{{ asset('assets/admiko/vendors/jquery/jquery-3.4.1.min.js') }}"></script>
     <script src="{{ asset('assets/admiko/js/bibliography.js') }}"></script>
-
-    <script type="text/javascript">
-        Array.from(document.querySelectorAll('th.is-sortable, button.button')).forEach(function (el) {
-            el.addEventListener('click', function (e) {
-            e.preventDefault();
-            console.log('jfdjf')
-            alert('Sortowanie, filtrowanie i paginację trzeba dorobić.');
-            });
-        });
-    </script>
 
 </body>
 
