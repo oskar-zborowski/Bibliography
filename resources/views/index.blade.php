@@ -228,6 +228,11 @@
 
     </section>
 
+    <!-- Scripts -->
+
+    <script src="{{ asset('assets/admiko/vendors/jquery/jquery-3.4.1.min.js') }}"></script>
+    <script src="{{ asset('assets/admiko/js/bibliography.js') }}"></script>
+
     <script type="text/javascript">
         Array.from(document.querySelectorAll('th.is-sortable, button.button')).forEach(function (el) {
             el.addEventListener('click', function (e) {
