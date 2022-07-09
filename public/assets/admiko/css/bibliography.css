@@ -183,3 +183,9 @@ ul > li:last-child {
     margin-left: auto;
     margin-right: auto;
 }
+
+a.disabled {
+    pointer-events: none;
+    cursor: default;
+    color: black;
+}

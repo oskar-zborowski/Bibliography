@@ -74,9 +74,9 @@
 
             <div class="field has-addons search">
                 <div class="control">
-                    <input class="input" type="text" placeholder="np. mennictwo">
+                    <input id="search-input" class="input" type="text" placeholder="np. mennictwo">
                 </div>
-                <div class="control">
+                <div class="control" onclick="searchDB()">
                     <a class="button is-dark">Szukaj</a>
                 </div>
             </div>
@@ -125,20 +125,20 @@
                     <div class="level">
                         <div class="level-left">
                             <div class="level-item">
-                                <small>Strona 2 z 5</small>
+                                <small id="page-display">Strona 0 z 0</small>
                             </div>
                         </div>
                         <div class="level-right paginator">
                             <div class="level-item">
                                 <div class="buttons has-addons">
-                                    <button type="button" class="button" onclick="paginate('previous')">Poprzednia</button>
-                                    <button type="button" class="button" onclick="paginate('next')">Następna</button>
+                                    <button id="previous-page" type="button" class="button" onclick="paginate('previous')">Poprzednia</button>
+                                    <button id="next-page" type="button" class="button" onclick="paginate('next')">Następna</button>
                                 </div>
                             </div>
                         </div>
                         <div class="level-right">
                             <div class="level-item">
-                                <small>217 wyników</small>
+                                <small id="result-counter">0 wyników</small>
                             </div>
                         </div>
                     </div>
