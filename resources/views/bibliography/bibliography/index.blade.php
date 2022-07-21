@@ -40,10 +40,10 @@
                                 <table class="table tableSort" style="width:100%" data-dom="ltrip">
                     <thead>
                         <tr data-sort-method='thead'>
-							<th scope="col" class="w-5" data-sort-method="number" >Lp.</th>
-							<th scope="col" class="text-nowrap">Autorzy</th>
-							<th scope="col" class="text-nowrap d-none d-sm-table-cell">Tytuł</th>
-							<th scope="col" class="text-nowrap d-none d-md-table-cell">Rok wydania</th>
+							<th scope="col" class="w-5" data-sort-method="number" style="white-space: normal !important;">Lp.</th>
+							<th scope="col" class="text-nowrap" style="white-space: normal !important;">Autorzy</th>
+							<th scope="col" class="text-nowrap d-none d-sm-table-cell" style="white-space: normal !important;">Tytuł</th>
+							<th scope="col" class="text-nowrap d-none d-md-table-cell" style="white-space: normal !important;">Rok wydania</th>
                             <th scope="col" class="w-5 no-sort" data-orderable="false">{{trans("admiko.table_edit")}}</th>
                             @if(Gate::allows('bibliography_allow'))
                             <th scope="col" class="w-5 no-sort deleteSelectAll" data-orderable="false"><i class="fas fa-check-double"></i> {{trans('admiko.table_delete')}}</th>
@@ -53,10 +53,10 @@
                     <tbody>
                     @foreach($tableData as $data)
                         <tr>
-							<td class="w-5"><a href="{{route("bibliography.bibliography.edit",[$data->id])}}">{{$data->id}}</a></td>
-							<td class="text-nowrap">{{$data->authors}}</td>
-							<td class="text-nowrap d-none d-sm-table-cell">{{$data->title}}</td>
-							<td class="text-nowrap d-none d-md-table-cell">{{$data->publishment_year}}</td>
+							<td class="w-5" style="white-space: normal !important;"><a href="{{route("bibliography.bibliography.edit",[$data->id])}}">{{$data->id}}</a></td>
+							<td class="text-nowrap" style="white-space: normal !important;">{{$data->authors}}</td>
+							<td class="text-nowrap d-none d-sm-table-cell" style="white-space: normal !important;">{{$data->title}}</td>
+							<td class="text-nowrap d-none d-md-table-cell" style="white-space: normal !important;">{{$data->publishment_year}}</td>
                             <td class="w-5 no-sort"><a href="{{route("bibliography.bibliography.edit",[$data->id])}}"><i class="fas fa-edit fa-fw"></i></a></td>
                             @if(Gate::allows(['bibliography_allow']))
                             <td class="w-5 no-sort"><div class="form-check form-checkbox">
