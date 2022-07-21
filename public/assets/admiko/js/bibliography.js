@@ -19,44 +19,158 @@ function sendRequest() {
         $('tbody').empty();
     
         const response = JSON.parse(data);
-    
+
         if (response['data'].length) {
+
+            let counter = 0;
 
             response['data'].forEach(obj => {
 
-                let appendedData = '<tr id="base' + obj['id'] + '"><td class="is-chevron-cell base-column" onclick="showDetails(' + obj['id'] + ', true)"><a role="button"><span id="expanderButton' + obj['id'] + '" class="icon"><i class="mdi mdi-chevron-right mdi-24px"></i></span></a></td><td data-label="Nr" class="base-column td-center" onclick="showDetails(' + obj['id'] + ')"><div>' + obj['id'] + '</div></td><td data-label="Autorzy" class="overflow-ellipsis overflow-ellipsis-flag base-column td-center" onclick="showDetails(' + obj['id'] + ')"><span>' + obj['authors'] + '</span></td><td data-label="Tytuł" class="overflow-ellipsis overflow-ellipsis-flag base-column td-center" onclick="showDetails(' + obj['id'] + ')"><span>' + obj['title'] + '</span></td><td data-label="Rok wydania" class="base-column td-center" onclick="showDetails(' + obj['id'] + ')"><div class="td-center">' + obj['publishment_year'] + '</div></td><td data-label="Tytuł tomu / czasopisma" class="overflow-ellipsis expanded-details hide-details hide-details-flag"><span>' + obj['issue_title'] + '</span></td><td data-label="Redaktor tomu" class="overflow-ellipsis expanded-details hide-details hide-details-flag"><span>' + obj['volume_editor'] + '</span></td><td data-label="Tom" class="expanded-details hide-details hide-details-flag"><span>' + obj['volume'] + '</span></td><td data-label="Zeszyt" class="expanded-details hide-details hide-details-flag"><span>' + obj['notebook'] + '</span></td><td data-label="Tytuł i numer serii" class="overflow-ellipsis expanded-details hide-details hide-details-flag"><span>' + obj['series'] + '</span></td><td data-label="Miejsce wydania" class="overflow-ellipsis expanded-details hide-details hide-details-flag"><span>' + obj['publication_place'] + '</span></td><td data-label="Wydawnictwo" class="overflow-ellipsis expanded-details hide-details hide-details-flag"><span>' + obj['publishing_house'] + '</span></td><td data-label="Rok publikacji" class="overflow-ellipsis expanded-details hide-details hide-details-flag"><span>' + obj['publication_year'] + '</span></td><td data-label="Przedział stron" class="overflow-ellipsis expanded-details hide-details hide-details-flag"><span>' + obj['page_range'] + '</span></td><td data-label="Liczba ilustracji" class="overflow-ellipsis expanded-details hide-details hide-details-flag"><span>' + obj['illustrations_number'] + '</span></td><td data-label="Słowa kluczowe" class="overflow-ellipsis expanded-details hide-details hide-details-flag"><span>' + obj['keywords'] + '</span></td><td data-label="ISBN" class="overflow-ellipsis expanded-details hide-details hide-details-flag"><span class="elipsis-string-break">' + obj['isbn'] + '</span></td><td data-label="ISSN" class="overflow-ellipsis expanded-details hide-details hide-details-flag"><span class="elipsis-string-break">' + obj['issn'] + '</span></td><td data-label="DOI" class="overflow-ellipsis expanded-details hide-details hide-details-flag"><span class="elipsis-string-break">' + obj['doi'] + '</span></td><td data-label="Link" class="expanded-details hide-details hide-details-flag">';
+                let appendedData;
 
-                if (obj['link'] === null) {
-                    appendedData += '<a class="disabled" href="/" target="_blank">nie podano</a></td>';
+                if (counter % 2 == 0) {
+                    appendedData += '<tr id="base' + obj['id'] + '" class="highlighted-color">';
                 } else {
-                    appendedData += '<a href="' + obj['link'] + '" target="_blank">Wyświetl</a></td>';
+                    appendedData += '<tr id="base' + obj['id'] + '">';
                 }
 
-                appendedData += '<td data-label="Plik" class="expanded-details hide-details hide-details-flag">';
+                appendedData += '<td class="is-chevron-cell base-column" onclick="showDetails(' + obj['id'] + ', true)"><a role="button"><span id="expanderButton' + obj['id'] + '" class="icon"><i class="mdi mdi-chevron-right mdi-24px"></i></span></a></td><td data-label="Nr" class="base-column td-center" onclick="showDetails(' + obj['id'] + ')"><div>' + obj['id'] + '</div></td><td data-label="Autorzy" class="overflow-ellipsis overflow-ellipsis-flag base-column td-center" onclick="showDetails(' + obj['id'] + ')"><span>' + obj['authors'] + '</span></td><td data-label="Tytuł" class="overflow-ellipsis overflow-ellipsis-flag base-column td-center" onclick="showDetails(' + obj['id'] + ')"><span>' + obj['title'] + '</span></td><td data-label="Rok wydania" class="base-column td-center" onclick="showDetails(' + obj['id'] + ')"><div class="td-center">' + obj['publishment_year'] + '</div></td>';
 
-                if (obj['file'] === null) {
-                    appendedData += '<a class="disabled" href="/" target="_blank">nie podano</a></td>';
-                } else {
-                    appendedData += '<a href="' + obj['file'] + '" target="_blank">Pobierz</a></td>';
+                if (obj['issue_title'] != '') {
+                    appendedData += '<td data-label="Tytuł tomu / czasopisma" class="expanded-details hide-details hide-details-flag" onclick="showDetails(' + obj['id'] + ')"><span>' + obj['issue_title'] + '</span></td>';
                 }
 
-                appendedData += '</tr><tr id="expander' + obj['id'] + '" class="detail hide-details"><td colspan="5"><div class="detail-container"><ul><li><span class="details">Tytuł tomu / czasopisma</span><span>' + obj['issue_title'] + '</span></li><li><span class="details">Redaktor tomu</span><span>' + obj['volume_editor'] + '</span></li><li><span class="details">Tom</span><span>' + obj['volume'] + '</span></li><li><span class="details">Zeszyt</span><span>' + obj['notebook'] + '</span></li><li><span class="details">Tytuł i numer serii</span><span>' + obj['series'] + '</span></li><li><span class="details">Miejsce wydania</span><span>' + obj['publication_place'] + '</span></li><li><span class="details">Wydawnictwo</span><span>' + obj['publishing_house'] + '</span></li><li><span class="details">Rok publikacji</span><span>' + obj['publication_year'] + '</span></li><li><span class="details">Przedział stron</span><span>' + obj['page_range'] + '</span></li><li><span class="details">Liczba ilustracji</span><span>' + obj['illustrations_number'] + '</span></li><li><span class="details">Słowa kluczowe</span><span>' + obj['keywords'] + '</span></li><li><span class="details">ISBN</span><span>' + obj['isbn'] + '</span></li><li><span class="details">ISSN</span><span>' + obj['issn'] + '</span></li><li><span class="details">DOI</span><span>' + obj['doi'] + '</span></li><li><span class="details">Link</span>';
-
-                if (obj['link'] === null) {
-                    appendedData += '<a class="disabled" href="/" target="_blank">nie podano</a></li>';
-                } else {
-                    appendedData += '<a href="' + obj['link'] + '" target="_blank">Wyświetl</a></li>';
+                if (obj['volume_editor'] != '') {
+                    appendedData += '<td data-label="Redaktor tomu" class="expanded-details hide-details hide-details-flag" onclick="showDetails(' + obj['id'] + ')"><span>' + obj['volume_editor'] + '</span></td>';
                 }
-                
-                appendedData += '<li><span class="details">Plik</span>';
 
-                if (obj['file'] === null) {
-                    appendedData += '<a class="disabled" href="/" target="_blank">nie podano</a></li></ul></div></td></tr>';
-                } else {
-                    appendedData += '<a href="' + obj['file'] + '" target="_blank">Pobierz</a></li></ul></div></td></tr>';
+                if (obj['volume'] != '') {
+                    appendedData += '<td data-label="Tom" class="expanded-details hide-details hide-details-flag" onclick="showDetails(' + obj['id'] + ')"><span>' + obj['volume'] + '</span></td>';
                 }
+
+                if (obj['notebook'] != '') {
+                    appendedData += '<td data-label="Zeszyt" class="expanded-details hide-details hide-details-flag" onclick="showDetails(' + obj['id'] + ')"><span>' + obj['notebook'] + '</span></td>';
+                }
+
+                if (obj['series'] != '') {
+                    appendedData += '<td data-label="Tytuł i numer serii" class="expanded-details hide-details hide-details-flag" onclick="showDetails(' + obj['id'] + ')"><span>' + obj['series'] + '</span></td>';
+                }
+
+                if (obj['publication_place'] != '') {
+                    appendedData += '<td data-label="Miejsce wydania" class="expanded-details hide-details hide-details-flag" onclick="showDetails(' + obj['id'] + ')"><span>' + obj['publication_place'] + '</span></td>';
+                }
+
+                if (obj['publishing_house'] != '') {
+                    appendedData += '<td data-label="Wydawnictwo" class="expanded-details hide-details hide-details-flag" onclick="showDetails(' + obj['id'] + ')"><span>' + obj['publishing_house'] + '</span></td>';
+                }
+
+                if (obj['publication_year'] != '') {
+                    appendedData += '<td data-label="Rok publikacji" class="expanded-details hide-details hide-details-flag" onclick="showDetails(' + obj['id'] + ')"><span>' + obj['publication_year'] + '</span></td>';
+                }
+
+                if (obj['page_range'] != '') {
+                    appendedData += '<td data-label="Przedział stron" class="expanded-details hide-details hide-details-flag" onclick="showDetails(' + obj['id'] + ')"><span>' + obj['page_range'] + '</span></td>';
+                }
+
+                if (obj['illustrations_number'] != '') {
+                    appendedData += '<td data-label="Liczba ilustracji" class="expanded-details hide-details hide-details-flag" onclick="showDetails(' + obj['id'] + ')"><span>' + obj['illustrations_number'] + '</span></td>';
+                }
+
+                if (obj['keywords'] != '') {
+                    appendedData += '<td data-label="Słowa kluczowe" class="expanded-details hide-details hide-details-flag" onclick="showDetails(' + obj['id'] + ')"><span>' + obj['keywords'] + '</span></td>';
+                }
+
+                if (obj['isbn'] != '') {
+                    appendedData += '<td data-label="ISBN" class="expanded-details hide-details hide-details-flag" onclick="showDetails(' + obj['id'] + ')"><span class="elipsis-string-break">' + obj['isbn'] + '</span></td>';
+                }
+
+                if (obj['issn'] != '') {
+                    appendedData += '<td data-label="ISSN" class="expanded-details hide-details hide-details-flag" onclick="showDetails(' + obj['id'] + ')"><span class="elipsis-string-break">' + obj['issn'] + '</span></td>';
+                }
+
+                if (obj['doi'] != '') {
+                    appendedData += '<td data-label="DOI" class="expanded-details hide-details hide-details-flag" onclick="showDetails(' + obj['id'] + ')"><span class="elipsis-string-break">' + obj['doi'] + '</span></td>';
+                }
+
+                if (obj['link'] != '') {
+                    appendedData += '<td data-label="Link" class="expanded-details hide-details hide-details-flag" onclick="showDetails(' + obj['id'] + ')"><a href="' + obj['link'] + '" target="_blank">Wyświetl</a></td>';
+                }
+
+                if (obj['file'] != '') {
+                    appendedData += '<td data-label="Plik" class="expanded-details hide-details hide-details-flag" onclick="showDetails(' + obj['id'] + ')"><a href="' + obj['file'] + '" target="_blank">Pobierz</a></td>';
+                }
+
+                appendedData += '</tr><tr id="expander' + obj['id'] + '" class="detail hide-details"><td colspan="5"><div class="detail-container"><ul>';
+
+                if (obj['issue_title'] != '') {
+                    appendedData += '<li><div class="right-align"><span class="details">Tytuł tomu / czasopisma</span></div><span>' + obj['issue_title'] + '</span></li>';
+                }
+
+                if (obj['volume_editor'] != '') {
+                    appendedData += '<li><div class="right-align"><span class="details">Redaktor tomu</span></div><span>' + obj['volume_editor'] + '</span></li>';
+                }
+
+                if (obj['volume'] != '') {
+                    appendedData += '<li><div class="right-align"><span class="details">Tom</span></div><span>' + obj['volume'] + '</span></li>';
+                }
+
+                if (obj['notebook'] != '') {
+                    appendedData += '<li><div class="right-align"><span class="details">Zeszyt</span></div><span>' + obj['notebook'] + '</span></li>';
+                }
+
+                if (obj['series'] != '') {
+                    appendedData += '<li><div class="right-align"><span class="details">Tytuł i numer serii</span></div><span>' + obj['series'] + '</span></li>';
+                }
+
+                if (obj['publication_place'] != '') {
+                    appendedData += '<li><div class="right-align"><span class="details">Miejsce wydania</span></div><span>' + obj['publication_place'] + '</span></li>';
+                }
+
+                if (obj['publishing_house'] != '') {
+                    appendedData += '<li><div class="right-align"><span class="details">Wydawnictwo</span></div><span>' + obj['publishing_house'] + '</span></li>';
+                }
+
+                if (obj['publication_year'] != '') {
+                    appendedData += '<li><div class="right-align"><span class="details">Rok publikacji</span></div><span>' + obj['publication_year'] + '</span></li>';
+                }
+
+                if (obj['page_range'] != '') {
+                    appendedData += '<li><div class="right-align"><span class="details">Przedział stron</span></div><span>' + obj['page_range'] + '</span></li>';
+                }
+
+                if (obj['illustrations_number'] != '') {
+                    appendedData += '<li><div class="right-align"><span class="details">Liczba ilustracji</span></div><span>' + obj['illustrations_number'] + '</span></li>';
+                }
+
+                if (obj['keywords'] != '') {
+                    appendedData += '<li><div class="right-align"><span class="details">Słowa kluczowe</span></div><span>' + obj['keywords'] + '</span></li>';
+                }
+
+                if (obj['isbn'] != '') {
+                    appendedData += '<li><div class="right-align"><span class="details">ISBN</span></div><span>' + obj['isbn'] + '</span></li>';
+                }
+
+                if (obj['issn'] != '') {
+                    appendedData += '<li><div class="right-align"><span class="details">ISSN</span></div><span>' + obj['issn'] + '</span></li>';
+                }
+
+                if (obj['doi'] != '') {
+                    appendedData += '<li><div class="right-align"><span class="details">DOI</span></div><span>' + obj['doi'] + '</span></li>';
+                }
+
+                if (obj['link'] != '') {
+                    appendedData += '<li><div class="right-align"><span class="details">Link</span></div><a href="' + obj['link'] + '" target="_blank">Wyświetl</a></li>';
+                }
+
+                if (obj['file'] != '') {
+                    appendedData += '<li><div class="right-align"><span class="details">Plik</span></div><a href="' + obj['file'] + '" target="_blank">Pobierz</a></li>';
+                }
+
+                appendedData += '</ul></div></td></tr>';
 
                 $('tbody').append(appendedData);
+
+                counter++;
             });
 
             $('#page-display').text('Strona ' + page + ' z ' + response['metadata']['bibliographyPagesNumer']);
@@ -86,28 +200,21 @@ function sendRequest() {
 
 function showDetails(id, expander = false) {
 
-    if (expander || window.innerWidth > 768) {
+    if ($('span#expanderButton' + id).hasClass('is-expanded')) {
 
-        if ($('span#expanderButton' + id).hasClass('is-expanded')) {
+        $('span#expanderButton' + id).removeClass('is-expanded');
+        $('tr#expander' + id).addClass('hide-details');
+        $('tr#base' + id + ' > td.hide-details-flag').addClass('hide-details');
 
-            $('span#expanderButton' + id).removeClass('is-expanded');
-            $('tr#expander' + id).addClass('hide-details');
-            $('tr#base' + id + ' > td.hide-details-flag').addClass('hide-details');
+        $('tr#base' + id + ' > td.overflow-ellipsis-flag').addClass('overflow-ellipsis');
 
-            if (window.innerWidth > 768) {
-                $('tr#base' + id + ' > td.overflow-ellipsis-flag').addClass('overflow-ellipsis');
-            }
+    } else {
 
-        } else {
+        $('span#expanderButton' + id).addClass('is-expanded');
+        $('tr#expander' + id).removeClass('hide-details');
+        $('tr#base' + id + ' > td.hide-details-flag').removeClass('hide-details');
 
-            $('span#expanderButton' + id).addClass('is-expanded');
-            $('tr#expander' + id).removeClass('hide-details');
-            $('tr#base' + id + ' > td.hide-details-flag').removeClass('hide-details');
-
-            if (window.innerWidth > 768) {
-                $('tr#base' + id + ' > td.overflow-ellipsis-flag').removeClass('overflow-ellipsis');
-            }
-        }
+        $('tr#base' + id + ' > td.overflow-ellipsis-flag').removeClass('overflow-ellipsis');
     }
 }
 

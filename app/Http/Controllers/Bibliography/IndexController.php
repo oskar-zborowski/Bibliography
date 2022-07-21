@@ -77,59 +77,67 @@ class IndexController extends Controller
         foreach ($bibliography as &$b) {
 
             if ($b['issue_title'] === null) {
-                $b['issue_title'] = 'nie podano';
+                $b['issue_title'] = '';
             }
 
             if ($b['volume_editor'] === null) {
-                $b['volume_editor'] = 'nie podano';
+                $b['volume_editor'] = '';
             }
 
             if ($b['volume'] === null) {
-                $b['volume'] = 'nie podano';
+                $b['volume'] = '';
             }
 
             if ($b['notebook'] === null) {
-                $b['notebook'] = 'nie podano';
+                $b['notebook'] = '';
             }
 
             if ($b['series'] === null) {
-                $b['series'] = 'nie podano';
+                $b['series'] = '';
             }
 
             if ($b['publication_place'] === null) {
-                $b['publication_place'] = 'nie podano';
+                $b['publication_place'] = '';
             }
 
             if ($b['publishing_house'] === null) {
-                $b['publishing_house'] = 'nie podano';
+                $b['publishing_house'] = '';
             }
 
             if ($b['publication_year'] === null) {
-                $b['publication_year'] = 'nie podano';
+                $b['publication_year'] = '';
             }
 
             if ($b['page_range'] === null) {
-                $b['page_range'] = 'nie podano';
+                $b['page_range'] = '';
             }
 
             if ($b['illustrations_number'] === null) {
-                $b['illustrations_number'] = 'nie podano';
+                $b['illustrations_number'] = '';
             }
 
             if ($b['keywords'] === null) {
-                $b['keywords'] = 'nie podano';
+                $b['keywords'] = '';
             }
 
             if ($b['isbn'] === null) {
-                $b['isbn'] = 'nie podano';
+                $b['isbn'] = '';
             }
 
             if ($b['issn'] === null) {
-                $b['issn'] = 'nie podano';
+                $b['issn'] = '';
             }
 
             if ($b['doi'] === null) {
-                $b['doi'] = 'nie podano';
+                $b['doi'] = '';
+            }
+
+            if ($b['file'] === null) {
+                $b['file'] = '';
+            }
+
+            if ($b['link'] === null) {
+                $b['link'] = '';
             }
         }
 

@@ -92,7 +92,7 @@
                     <table class="table is-fullwidth is-striped is-hoverable">
 
                         <thead>
-                            <tr>
+                            <tr class="table-header">
                                 <th class="is-chevron-cell"></th>
                                 <th id="sort-id" class="is-current-sort is-sortable" style="width: 70px;" onclick="sort('id')">
                                     <div class="th-wrap">
