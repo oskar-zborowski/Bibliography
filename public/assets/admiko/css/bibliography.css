@@ -155,7 +155,7 @@ h1.title {
         white-space: nowrap;
     }
 
-    .overflow-ellipsis:hover span {
+    /*.overflow-ellipsis:hover span {
         display: block;
         margin: 0;
         overflow: initial;
@@ -166,7 +166,7 @@ h1.title {
         transform: initial;
         white-space: initial;
         width: initial;
-    }
+    }*/
 
     .detail {
         display: none !important;
