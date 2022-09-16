@@ -20,3 +20,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/v1/bibliography/index', [IndexController::class, 'getBibliography'])->name('index-getBibliography');
+Route::get('/v1/bibliography/upload-from-txt', [IndexController::class, 'uploadBibliographyFromTxt'])->name('index-uploadBibliographyFromTxt');

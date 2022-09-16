@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Bibliography;
 use App\Http\Controllers\Controller;
 use App\Models\Bibliography\Bibliography;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class IndexController extends Controller
 {
@@ -149,5 +150,34 @@ class IndexController extends Controller
             ]
         ]);
         die;
+    }
+
+    public function uploadBibliographyFromTxt(Request $request) {
+
+        $fileName = 'Bibliografia.txt';
+
+        $data = fread(fopen($fileName, 'r'), filesize($fileName));
+        $dataLength = strlen($data);
+        $counter = 0;
+        $array = [];
+
+        for ($i=0; $i<$dataLength; $i++) {
+
+            if ($data[$i] == "\n") {
+                $counter++;
+            } else {
+                if (!isset($array[$counter])) {
+                    $array[$counter] = $data[$i];
+                } else {
+                    $array[$counter] .= $data[$i];
+                }
+            }
+        }
+
+        for ($i=0; $i<$counter; $i++) {
+            DB::table('bibliography')->insert([
+                'title' => $array[$i],
+            ]);
+        }
     }
 }
