@@ -174,7 +174,7 @@ class IndexController extends Controller
             }
         }
 
-        for ($i=0; $i<$counter; $i++) {
+        for ($i=$counter-1; $i>=0; $i--) {
             DB::table('bibliography')->insert([
                 'title' => $array[$i],
             ]);
